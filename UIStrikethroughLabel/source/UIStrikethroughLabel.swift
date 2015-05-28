@@ -17,7 +17,7 @@ class UIStrikethroughLabel: UILabel {
         // Drawing code
     }
     */
-    
+    //TODO:多行分割线
     var strikeThroughColor:UIColor?
     
     var defaultSTColor = UIColor.blackColor()
