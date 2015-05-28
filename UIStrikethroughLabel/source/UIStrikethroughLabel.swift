@@ -17,5 +17,49 @@ class UIStrikethroughLabel: UILabel {
         // Drawing code
     }
     */
+    
+    var strikeThroughColor:UIColor?
+    
+    var defaultSTColor = UIColor.blackColor()
+
+    override func drawTextInRect(rect: CGRect) {
+        super.drawTextInRect(rect)
+        let t:NSString = self.text!
+        let textSize = t.sizeWithAttributes([NSFontAttributeName: self.font])
+        
+        var strikeWidth = textSize.width
+        
+        var lineRect:CGRect
+        
+        switch self.textAlignment{
+        case NSTextAlignment.Right:
+            lineRect = CGRectMake(rect.size.width - strikeWidth, rect.size.height / 2, strikeWidth, 1)
+        case NSTextAlignment.Center:
+            lineRect = CGRectMake(rect.size.width / 2 - strikeWidth / 2 , rect.size.height / 2, strikeWidth, 1)
+        default:
+            lineRect = CGRectMake(0, rect.size.height / 2, strikeWidth, 1)
+            
+        }
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        if strikeThroughColor == nil {
+            strikeThroughColor = defaultSTColor
+        }
+        
+        CGContextSetFillColorWithColor(context, self.strikeThroughColor?.CGColor)
+        CGContextFillRect(context, lineRect)
+
+    }
+    
+    
+//    if (self.strikeThroughEnabled)
+//    {
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    
+//    CGContextSetFillColorWithColor(context, [self strikeThroughColor].CGColor);
+//    
+//    CGContextFillRect(context, lineRect);
+//    }
 
 }
